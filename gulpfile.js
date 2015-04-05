@@ -6,6 +6,7 @@ var gulp = require('gulp');
 var git = require('gulp-git');
 var jsdoc = require("gulp-jsdoc");
 var fs = require('fs');
+var argv = require('yargs').default('m', "Update").argv;
 
 var config = require('./package.json');
 var gitRepositories = [];
@@ -13,12 +14,51 @@ var gitRepositories = [];
 /**
  * Print git status
  */
-gulp.task('status', function(){
-  git.status({args: '--porcelain'}, function (err, stdout) {
-    if (err) throw err;
-  });
+gulp.task('status', ['setup'], function(){
+    console.log("Project: "+config.name);    
+    var ret = git.status(
+        { args: '--porcelain', quiet: false, sync: true},
+        function (err) {
+            if (err) throw err;
+        }
+    )
+    console.log(ret.toString());
+    for (var i=0; i < gitRepositories.length;i++) {
+        console.log("Project: "+gitRepositories[i].name);        
+        var ret = git.status(
+            { args: '--porcelain', cwd: gitRepositories[i].localDirectory, quiet: false, sync: true},
+            function (err) {
+                if (err) throw err;
+            }
+        )
+        console.log(ret.toString());
+    }    
 });
  
+
+/**
+ * Commit all
+ */
+gulp.task('commit', ['setup'], function(){
+    console.log("Project: "+config.name);    
+    git.commitsimple(
+        argv.m,
+        { args: '--amend', quiet: false},
+        function (err) {
+            if (err) throw err;
+        }        
+    );
+    for (var i=0; i < gitRepositories.length;i++) {
+        console.log("Project: "+gitRepositories[i].name);
+        git.commitsimple(argv.m,
+                         { cwd: gitRepositories[i].localDirectory,  args: '--amend'},
+                            function (err) {
+                                if (err) throw err;
+                            }                            
+                        );
+    }
+});
+
 /**
  * Print git logs
  */
@@ -128,9 +168,9 @@ gulp.task('linkUpstream', ['initModuleFolder','findRepos','cloneRepos'], functio
  * Pulls all required repositories and configures them.
  */
 gulp.task('setup', ['initModuleFolder','findRepos','cloneRepos','linkUpstream'], function(){
-    for (var i=0; i < gitRepositories.length;i++) {
+    /*for (var i=0; i < gitRepositories.length;i++) {
         console.log(gitRepositories[i]);
-    }            
+    }*/           
 });
 
 
@@ -171,10 +211,37 @@ gulp.task('merge', ['initModuleFolder','findRepos'], function(){
 });
 
 /**
- * Merge latest code from trunks.
+ * Merge latest code from upstream repositories
  */
 gulp.task('sync', ['setup','fetch','checkout','merge'], function(){
 });
+
+/**
+ * Update latest code from master
+ */
+gulp.task('update', ['setup'], function(){
+    console.log("Updating "+config.name);
+    git.pull(
+        'origin',
+        'master',
+        { quiet: false, sync: false},
+        function (err) {
+            if (err) throw err;
+        }
+    )    
+    for (var i=0; i < gitRepositories.length;i++) {
+        console.log("Updating "+gitRepositories[i].name);
+        git.pull(
+            'origin',
+            'master',
+            { cwd: gitRepositories[i].localDirectory, quiet: false, sync: false},
+            function (err) {
+                if (err) throw err;
+            }
+        )
+    }
+});
+
 
 /**
  * Generates documentation.
