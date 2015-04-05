@@ -1,0 +1,30 @@
+{
+  "name": "texy",
+  "version": "0.0.1",
+  "description": "Texy...",
+  "main": "docs/index.html",
+  "directories": {},
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/viknash/texy.git"
+  },
+  "keywords": [
+    "texy",
+    "word",
+    "processor"
+  ],
+  "author": "Viknash",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "browserify": "^4.2.3",
+    "gulp": "^3.8.11",
+    "animate.css": "viknash/animate.css.git",
+    "gulp-git": "^0.4.0",
+    "jsdoc": "<=3.3.0"
+  },
+  "dependencies": {
+  
+  }
+}
