@@ -137,7 +137,7 @@ Desktop.ini
 *.egg
 *.egg-info
 dist
-build
+# build
 eggs
 parts
 bin
@@ -167,6 +167,7 @@ pip-log.txt
 .hgignore
 *.sublime-*
 
+docs
 modules
 node_modules
 custom_node_modules

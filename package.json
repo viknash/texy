@@ -22,7 +22,8 @@
     "gulp": "^3.8.11",
     "animate.css": "viknash/animate.css.git",
     "gulp-git": "^0.4.0",
-    "jsdoc": "<=3.3.0"
+    "jsdoc": "<=3.3.0",
+    "gulp-jsdoc": "0.1.4"
   },
   "dependencies": {
   
