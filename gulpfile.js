@@ -10,14 +10,18 @@ var fs = require('fs');
 var config = require('./package.json');
 var gitRepositories = [];
 
-
+/**
+ * Print git status
+ */
 gulp.task('status', function(){
   git.status({args: '--porcelain'}, function (err, stdout) {
     if (err) throw err;
   });
 });
  
-// Other actions that do not require a Vinyl 
+/**
+ * Print git logs
+ */
 gulp.task('git-log', function(){
   git.exec({args : 'log --follow .'}, function (err, stdout) {
     if (err) throw err;
@@ -82,9 +86,17 @@ gulp.task('findRepos', function(){
 gulp.task('cloneRepos', ['initModuleFolder','findRepos'], function(){
     for (var i=0; i < gitRepositories.length;i++) {
         if (!gitRepositories[i].cloned) {
-            git.clone(
+            /*git.clone(
                 gitRepositories[i].forkedUrl, 
                 { cwd: moduleDirectory, quiet: false, sync: true},
+                function (err) {
+                    if (err) throw err;
+                }
+            );*/
+            git.addSubmodule(
+                gitRepositories[i].forkedUrl,
+                gitRepositories[i].localDirectory,
+                { quiet: false, sync: true},
                 function (err) {
                     if (err) throw err;
                 }
@@ -112,6 +124,9 @@ gulp.task('linkUpstream', ['initModuleFolder','findRepos','cloneRepos'], functio
     }            
 });
 
+/**
+ * Pulls all required repositories and configures them.
+ */
 gulp.task('setup', ['initModuleFolder','findRepos','cloneRepos','linkUpstream'], function(){
     for (var i=0; i < gitRepositories.length;i++) {
         console.log(gitRepositories[i]);
@@ -155,9 +170,15 @@ gulp.task('merge', ['initModuleFolder','findRepos'], function(){
     }            
 });
 
+/**
+ * Merge latest code from trunks.
+ */
 gulp.task('sync', ['setup','fetch','checkout','merge'], function(){
 });
 
+/**
+ * Generates documentation.
+ */
 gulp.task('docs', function(){
     gulp.src(["./*.js", "README.md"])
       .pipe(jsdoc.parser())
@@ -177,5 +198,7 @@ gulp.task('docs', function(){
            )
 });
 
-// Run gulp's default task 
-gulp.task('default',['add']);
+/**
+ * Default task
+ */
+gulp.task('default',['setup']);

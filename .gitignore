@@ -168,7 +168,7 @@ pip-log.txt
 *.sublime-*
 
 docs
-modules
+# modules
 node_modules
 custom_node_modules
 .tmp/
