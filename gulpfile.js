@@ -47,16 +47,17 @@ gulp.task('commit', ['setup'], function(){
         function (err) {
             if (err) throw err;
         }        
-    );/*
+    );
     for (var i=0; i < gitRepositories.length;i++) {
         console.log("Project: "+gitRepositories[i].name);
-        git.commitsimple(argv.m,
-                         { cwd: gitRepositories[i].localDirectory,  args: ' -a', sync: false},
-                            function (err) {
-                                if (err) throw err;
-                            }                            
-                        );
-    }*/
+        git.commitsimple(
+            argv.m,
+            { cwd: gitRepositories[i].localDirectory,  args: ' -a', quiet: false, sync: false},
+            function (err) {
+                if (err) throw err;
+            }                            
+        );
+    }
 });
 
 
