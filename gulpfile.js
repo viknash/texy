@@ -45,7 +45,6 @@ gulp.task('commit', ['setup'], function(){
         argv.m,
         { args: '-a', quiet: false, sync: false},
         function (err) {
-            if (err) throw err;
         }        
     );
     for (var i=0; i < gitRepositories.length;i++) {
@@ -54,7 +53,6 @@ gulp.task('commit', ['setup'], function(){
             argv.m,
             { cwd: gitRepositories[i].localDirectory,  args: ' -a', quiet: false, sync: false},
             function (err) {
-                console.log(err);
             }                            
         );
     }
