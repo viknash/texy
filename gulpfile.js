@@ -43,7 +43,7 @@ gulp.task('commit', ['setup'], function(){
     console.log("Project: "+config.name);    
     git.commitsimple(
         argv.m,
-        { args: '-a', quiet: false, sync: false},
+        { args: '-a', quiet: false, sync: true},
         function (err) {
         }        
     );
@@ -51,7 +51,7 @@ gulp.task('commit', ['setup'], function(){
         console.log("Project: "+gitRepositories[i].name);
         git.commitsimple(
             argv.m,
-            { cwd: gitRepositories[i].localDirectory,  args: ' -a', quiet: false, sync: false},
+            { cwd: gitRepositories[i].localDirectory,  args: ' -a', quiet: false, sync: true},
             function (err) {
             }                            
         );
