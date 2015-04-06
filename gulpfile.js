@@ -54,7 +54,7 @@ gulp.task('commit', ['setup'], function(){
             argv.m,
             { cwd: gitRepositories[i].localDirectory,  args: ' -a', quiet: false, sync: false},
             function (err) {
-                if (err) throw err;
+                console.log(err);
             }                            
         );
     }
@@ -79,7 +79,7 @@ gulp.task('push', ['setup'], function(){
         git.push("origin", "master",
                          { cwd: gitRepositories[i].localDirectory,  args: '-f', sync: true},
                             function (err) {
-                                console.log(err);
+                                if (err) throw err;
                             }                            
                         );
     }
