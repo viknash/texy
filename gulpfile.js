@@ -43,7 +43,7 @@ gulp.task('commit', ['setup'], function(){
     console.log("Project: "+config.name);    
     git.commitsimple(
         argv.m,
-        { args: '--amend', quiet: false},
+        { args: '--no-edit -a', quiet: false, sync: false},
         function (err) {
             if (err) throw err;
         }        
@@ -51,13 +51,39 @@ gulp.task('commit', ['setup'], function(){
     for (var i=0; i < gitRepositories.length;i++) {
         console.log("Project: "+gitRepositories[i].name);
         git.commitsimple(argv.m,
-                         { cwd: gitRepositories[i].localDirectory,  args: '--amend'},
+                         { cwd: gitRepositories[i].localDirectory,  args: '--no-edit -a', sync: false},
                             function (err) {
                                 if (err) throw err;
                             }                            
                         );
     }
 });
+
+
+/**
+ * Push all
+ */
+gulp.task('push', ['setup'], function(){
+    console.log("Project: "+config.name);    
+    git.push(
+        "origin",
+        "master",
+        { args: '-f', quiet: false, sync: true},
+        function (err) {
+            if (err) throw err;
+        }        
+    );
+    for (var i=0; i < gitRepositories.length;i++) {
+        console.log("Project: "+gitRepositories[i].name);
+        git.push("origin", "master",
+                         { cwd: gitRepositories[i].localDirectory,  args: '-f', sync: true},
+                            function (err) {
+                                if (err) throw err;
+                            }                            
+                        );
+    }
+});
+
 
 /**
  * Print git logs
