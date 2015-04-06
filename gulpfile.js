@@ -47,7 +47,7 @@ gulp.task('commit', ['setup'], function(){
         function (err) {
             if (err) throw err;
         }        
-    );
+    );/*
     for (var i=0; i < gitRepositories.length;i++) {
         console.log("Project: "+gitRepositories[i].name);
         git.commitsimple(argv.m,
@@ -56,7 +56,7 @@ gulp.task('commit', ['setup'], function(){
                                 if (err) throw err;
                             }                            
                         );
-    }
+    }*/
 });
 
 
