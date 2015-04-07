@@ -45,7 +45,7 @@ gulp.task('commit', ['setup'], function(){
         argv.m,
         { args: '-a', quiet: false, sync: true},
         function (err) {
-            console.log(err.toString());
+            console.log(err.stdout.toString());
         }        
     );
     for (var i=0; i < gitRepositories.length;i++) {
