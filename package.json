@@ -20,13 +20,15 @@
   "devDependencies": {
     "browserify": "^4.2.3",
     "gulp": "^3.8.11",
-    "animate.css": "viknash/animate.css.git",
     "gulp-git": "^0.4.0",
     "jsdoc": "<=3.3.0",
     "gulp-jsdoc": "0.1.4",
-    "yargs": "^3.7.0"
+    "yargs": "^3.7.0",
+    "browserify": "^9.0.7",
+    "require-dir": "^0.3.0"
   },
   "dependencies": {
+    "animate.css": "viknash/animate.css.git"
   
   }
 }

@@ -5,62 +5,15 @@ var gitProject = "texy";
 var gulp = require('gulp');
 var git = require('gulp-git');
 var jsdoc = require("gulp-jsdoc");
+var requireDir = require('require-dir');
+
 var fs = require('fs');
 var argv = require('yargs').default('m', "Update").argv;
 
 var config = require('./package.json');
 var gitRepositories = [];
 
-/**
- * Print git status
- */
-gulp.task('status', ['setup'], function(){
-    console.log("Project: "+config.name);    
-    var ret = git.status(
-        { args: '--porcelain', quiet: false, sync: true},
-        function (err) {
-            if (err) throw err;
-        }
-    )
-    console.log(ret.toString());
-    for (var i=0; i < gitRepositories.length;i++) {
-        console.log("Project: "+gitRepositories[i].name);        
-        var ret = git.status(
-            { args: '--porcelain', cwd: gitRepositories[i].localDirectory, quiet: false, sync: true},
-            function (err) {
-                if (err) throw err;
-            }
-        )
-        console.log(ret.toString());
-    }    
-});
- 
-
-/**
- * Commit all
- */
-gulp.task('commit', ['setup'], function(){
-    console.log("Project: "+config.name);    
-    git.commitsimple(
-        argv.m,
-        { args: '-a', quiet: false, sync: true},
-        function (err) {
-            if (err) console.log(err.toString());
-            
-        }        
-    );
-    for (var i=0; i < gitRepositories.length;i++) {
-        console.log("Project: "+gitRepositories[i].name);
-        git.commitsimple(
-            argv.m,
-            { cwd: gitRepositories[i].localDirectory,  args: ' -a', quiet: false, sync: true},
-            function (err) {
-                //if (err) throw err;
-            }                            
-        );
-    }
-});
-
+requireDir('./gulp-tasks');
 
 /**
  * Push all
@@ -88,30 +41,44 @@ gulp.task('push', ['setup'], function(){
 
 
 /**
+ * Pull all
+ */
+gulp.task('pull', ['setup'], function(){
+    console.log("Project: "+config.name);    
+    git.push(
+        "origin",
+        "master",
+        { args: '--rebase', quiet: false, sync: true},
+        function (err) {
+            if (err) throw err;
+        }        
+    );
+    for (var i=0; i < gitRepositories.length;i++) {
+        console.log("Project: "+gitRepositories[i].name);
+        git.push("origin", "master",
+                         { cwd: gitRepositories[i].localDirectory,  args: '--rebase', sync: true},
+                            function (err) {
+                                if (err) throw err;
+                            }                            
+                        );
+    }
+});
+
+
+
+/**
  * Print git logs
  */
 gulp.task('git-log', function(){
   git.exec({args : 'log --follow .'}, function (err, stdout) {
     if (err) throw err;
   });
-});
-
-gulp.task('pullRepo', function(){
-                return git.clone(
-                    'https://github.com/'+modules[module], 
-                    { cwd: moduleDirectory, quiet: true},
-                    function (err) {
-                        if (err) throw err;
-                    }
-                ).pipe(
-                    git.addRemote(
-                                'upstream',
-                                require(moduleDirectory+'/'+repoName+'/package.json').repository.url, 
-                                function (err) {
-                                    if (err) throw err;
-                                }
-                    )
-                );
+    for (var i=0; i < gitRepositories.length;i++) {
+        console.log("Project: "+gitRepositories[i].name);
+        git.exec({ cwd: gitRepositories[i].localDirectory, args : 'log --follow .'}, function (err, stdout) {
+          if (err) throw err;
+        });        
+    }    
 });
 
 
@@ -126,7 +93,7 @@ gulp.task('initModuleFolder', function(){
 
 gulp.task('findRepos', function(){
     //Parse packages.json and pull git repos
-    var modules = config.devDependencies;
+    var modules = config.dependencies;
     for (var module in modules) {
         if(modules[module].indexOf(".git") != -1) {
             var findRepoName = new RegExp("^[^\/]*\/([^\/]*).git$");
@@ -190,15 +157,6 @@ gulp.task('linkUpstream', ['initModuleFolder','findRepos','cloneRepos'], functio
             gitRepositories[i].cloned = true;
         }
     }            
-});
-
-/**
- * Pulls all required repositories and configures them.
- */
-gulp.task('setup', ['initModuleFolder','findRepos','cloneRepos','linkUpstream'], function(){
-    /*for (var i=0; i < gitRepositories.length;i++) {
-        console.log(gitRepositories[i]);
-    }*/           
 });
 
 
