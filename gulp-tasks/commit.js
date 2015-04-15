@@ -3,12 +3,12 @@ var git = require('gulp-git');
 var config = require('../package.json');
 var argv = require('yargs').default('m', "Update").argv;
 
-var gitRepositories = require("./setup.js")();
+var gitRepositories = require("./findrepos.js")();
 
 /**
  * Commit all
  */
-gulp.task('commit', ['setup','initModuleFolder','findRepos'], function(){
+gulp.task('commit', ['setup'], function(){
     console.log("Project: "+config.name);    
     git.commitsimple(
         argv.m,

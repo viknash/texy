@@ -1,0 +1,9 @@
+[submodule "modules/topcoat"]
+	path = modules/topcoat
+	url = https://github.com/viknash/topcoat.git
+[submodule "modules/grande.js"]
+	path = modules/grande.js
+	url = https://github.com/viknash/grande.js.git
+[submodule "modules/jquery"]
+	path = modules/jquery
+	url = https://github.com/viknash/jquery.git

@@ -3,9 +3,18 @@ var git = require('gulp-git');
 var fs = require('fs');
 var moduleDirectory = "./modules";
 var config = require('../package.json');
+var argv = require('yargs').argv;
 var gitRepositories = [];
 
-gulp.task('initModuleFolder', function(){
+
+/**
+ * Pulls all required repositories and configures them.
+ * @argument {string} force Force adding of a module
+ */
+gulp.task('setup', ['setup-linkUpstream'], function(){
+});
+
+gulp.task('setup-initModuleFolder', function(){
     //Create ./modules directory
     if (!fs.existsSync(moduleDirectory))
     {
@@ -13,35 +22,7 @@ gulp.task('initModuleFolder', function(){
     }    
 });
 
-module.exports = function ()
-{
-    var repos = [];
-    //Parse packages.json and pull git repos
-    var modules = config.dependencies;
-    for (var module in modules) {
-        if(modules[module].indexOf(".git") != -1) {
-            var findRepoName = new RegExp("^[^\/]*\/([^\/]*).git$");
-            var findRepoNameResults = findRepoName.exec(modules[module]);
-            var repoName = findRepoNameResults[1];
-            var localDirectory = moduleDirectory+'/'+repoName;
-            var cloned = false
-            if (fs.existsSync(localDirectory))
-            {
-                cloned = true;
-            }
-            repos.push({
-                name : repoName,
-                cloned : cloned,
-                localDirectory : localDirectory,
-                forkedUrl : 'https://github.com/'+modules[module],
-                remoteUrl : '',
-            });
-        }
-    }    
-    return repos;
-};
-
-gulp.task('findRepos', function(){
+gulp.task('setup-findRepos',['setup-initModuleFolder'], function(){
     //Parse packages.json and pull git repos
     var modules = config.dependencies;
     for (var module in modules) {
@@ -68,7 +49,7 @@ gulp.task('findRepos', function(){
 });
 
 
-gulp.task('cloneRepos', ['initModuleFolder','findRepos'], function(){
+gulp.task('setup-cloneRepos', ['setup-findRepos'], function(){
     for (var i=0; i < gitRepositories.length;i++) {
         if (!gitRepositories[i].cloned) {
             /*git.clone(
@@ -78,10 +59,15 @@ gulp.task('cloneRepos', ['initModuleFolder','findRepos'], function(){
                     if (err) throw err;
                 }
             );*/
+            var args = ""
+            if (argv.force)
+            {
+                args = "--force";
+            }
             git.addSubmodule(
                 gitRepositories[i].forkedUrl,
                 gitRepositories[i].localDirectory,
-                { quiet: false, sync: true},
+                { quiet: false, sync: true, args: args},
                 function (err) {
                     if (err) throw err;
                 }
@@ -90,8 +76,21 @@ gulp.task('cloneRepos', ['initModuleFolder','findRepos'], function(){
     }            
 });
 
-/**
- * Pulls all required repositories and configures them.
- */
-gulp.task('setup', ['initModuleFolder','findRepos','cloneRepos','linkUpstream'], function(){
+gulp.task('setup-linkUpstream', ['setup-cloneRepos'], function(){
+    for (var i=0; i < gitRepositories.length;i++) {
+        if (!gitRepositories[i].cloned) {
+            var repoDependenciesFile = gitRepositories[i].localDirectory+'/package.json';
+            var repoDependencies = require(repoDependenciesFile);
+            gitRepositories[i].remoteUrl = repoDependencies.repository.url;
+            git.addRemote(
+                    'upstream',
+                    gitRepositories[i].remoteUrl,
+                    { cwd: gitRepositories[i].localDirectory },
+                    function (err) {
+                        if (err) throw err;
+                    }
+            )
+            gitRepositories[i].cloned = true;
+        }
+    }            
 });
