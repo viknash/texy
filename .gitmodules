@@ -7,3 +7,6 @@
 [submodule "modules/jquery"]
 	path = modules/jquery
 	url = https://github.com/viknash/jquery.git
+[submodule "modules/animate.css"]
+	path = modules/animate.css
+	url = https://github.com/viknash/animate.css.git
