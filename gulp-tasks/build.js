@@ -8,28 +8,30 @@ var argv = require('yargs').argv;
 var gitRepositories = require("./findrepos.js")();
 var rootDir = process.cwd();
 
-/**
- * Pre-load grunt tasks into gulp
- */
-if (fs.existsSync('./Gruntfile.js')) {
-    plugins.grunt(gulp);
-}
-
-/**
- * Pre-load grunt tasks in modules into into gulp
- */
-for (var i = 0; i < gitRepositories.length; i++) {
-    console.log("Grab grunt tasks: " + gitRepositories[i].name);
-    if (gitRepositories[i].grunt) {
-        plugins.grunt(gulp, {
-            base: require('path').join(__dirname, '../', gitRepositories[i].localDirectory),
-            prefix: "grunt-" + gitRepositories[i].name + "-"
-        });
+if (process.argv[2] != "install") {
+    /**
+     * Pre-load grunt tasks into gulp
+     */
+    if (fs.existsSync('./Gruntfile.js')) {
+        plugins.grunt(gulp);
     }
-}
 
-/* Hack Reset to Root Dir. Directory changes after execution of grunt plugin */
-process.chdir(rootDir);
+    /**
+     * Pre-load grunt tasks in modules into into gulp
+     */
+    for (var i = 0; i < gitRepositories.length; i++) {
+        console.log("Grab grunt tasks: " + gitRepositories[i].name);
+        if (gitRepositories[i].grunt) {
+            plugins.grunt(gulp, {
+                base: require('path').join(__dirname, '../', gitRepositories[i].localDirectory),
+                prefix: "grunt-" + gitRepositories[i].name + "-"
+            });
+        }
+    }
+
+    /* Hack Reset to Root Dir. Directory changes after execution of grunt plugin */
+    process.chdir(rootDir);
+}
 
 /**
  * Run default grunt tasks
