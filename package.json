@@ -1,47 +1,58 @@
 {
-  "name": "texy",
-  "version": "0.0.1",
-  "description": "Texy...",
-  "main": "docs/index.html",
-  "directories": {},
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/viknash/texy.git"
-  },
-  "keywords": [
-    "texy",
-    "word",
-    "processor"
-  ],
-  "author": "Viknash",
-  "license": "MIT",
-  "readmeFilename": "README.md",
-  "devDependencies": {
-    "browserify": "^4.2.3",
-    "gulp": "^3.8.11",
-    "gulp-git": "^0.4.0",
-    "jsdoc": "<=3.3.0",
-    "gulp-jsdoc": "0.1.4",
-    "yargs": "^3.7.0",
-    "browserify": "^9.0.7",
-    "require-dir": "^0.3.0",
-    "gulp-grunt": "^0.5.2",
-    "gulp-load-plugins": "^0.10.0",
-    "npm-clean": "^1.0.3",
-    "gulp-install": "^0.4.0",
-    "gulp-exec": "^2.1.1",
-    "grunt": "~0.4.1",
-    "gulp-gulp": "^0.0.3",
-    "gulp-task-listing": "^1.0.0",
-    "watchify": "^3.1.0",
-    "gulp-watchify": "^0.5.0"
-  },
-  "dependencies": {
-    "animate.css": "viknash/animate.css.git",
-    "topcoat": "viknash/topcoat.git",
-    "grande.js": "viknash/grande.js.git",
-    "jquery": "viknash/jquery.git",
-    "MathJax": "viknash/MathJax.git"
-  }
+    "name": "texy",
+    "version": "0.0.1",
+    "description": "Texy...",
+    "main": "docs/index.html",
+    "directories": {},
+    "scripts": {},
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/viknash/texy.git"
+    },
+    "keywords": [
+        "texy",
+        "word",
+        "processor"
+    ],
+    "author": "Viknash",
+    "license": "MIT",
+    "readmeFilename": "README.md",
+    "devDependencies": {
+        "browserify": "^4.2.3",
+        "gulp": "^3.8.11",
+        "gulp-git": "^0.4.0",
+        "jsdoc": "<=3.3.0",
+        "gulp-jsdoc": "0.1.4",
+        "yargs": "^3.7.0",
+        "browserify": "^9.0.7",
+        "require-dir": "^0.3.0",
+        "gulp-grunt": "^0.5.2",
+        "gulp-load-plugins": "^0.10.0",
+        "npm-clean": "^1.0.3",
+        "gulp-install": "^0.4.0",
+        "gulp-exec": "^2.1.1",
+        "grunt": "~0.4.1",
+        "gulp-gulp": "^0.0.3",
+        "gulp-task-listing": "^1.0.0",
+        "watchify": "^3.1.0",
+        "gulp-watchify": "^0.5.0"
+    },
+    "dependencies": {
+        "animate.css": "viknash/animate.css.git",
+        "topcoat": "viknash/topcoat.git",
+        "grande.js": "viknash/grande.js.git",
+        "jquery": "viknash/jquery.git",
+        "MathJax": "viknash/MathJax.git"
+    },
+    "custom_settings": {
+        "browserify": {
+            "bundlePaths": {
+                "src": [
+                    "client/js/**/*.js",
+                    "!client/js/**/lib/**"
+                ],
+                "dest": "build/www/js/"
+            }
+        }
+    }
 }
