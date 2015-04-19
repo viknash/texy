@@ -3,11 +3,9 @@ node_js:
   - '0.12'
 before_install:
   - npm install -g gulp-cli
-  - pwd
   - pushd scripts
-  - ls -l
+  - chmod 777 setup.sh
   - popd
-  - ./scripts/setup.sh
   - npm run-script bootstrap
 before_script:
   - npm install -g grunt-cli
