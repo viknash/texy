@@ -4,7 +4,6 @@
     "description": "Texy...",
     "main": "docs/index.html",
     "directories": {},
-    "scripts": {},
     "repository": {
         "type": "git",
         "url": "https://github.com/viknash/texy.git"
@@ -54,5 +53,10 @@
                 "dest": "build/www/js/"
             }
         }
+    },
+    "scripts": {
+        "postinstall": "gulp install",
+        "test": "gulp build",
+        "bootstrap": "./scripts/setup.h"
     }
 }

@@ -1,4 +1,6 @@
 # Texy
+[![Build Status](https://travis-ci.org/viknash/texy.png)](https://travis-ci.org/viknash/texy)
+[![Coverage Status](https://coveralls.io/repos/viknash/texy/badge.svg)](https://coveralls.io/r/viknash/texy)
 
 grande.js
 =========
