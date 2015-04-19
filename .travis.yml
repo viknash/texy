@@ -4,7 +4,7 @@ node_js:
 before_install:
   - npm install -g gulp-cli
   - pwd
-  - pushd
+  - pushd scripts
   - ls -l
   - popd
   - ./scripts/setup.sh
