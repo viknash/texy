@@ -34,7 +34,8 @@
         "gulp-gulp": "^0.0.3",
         "gulp-task-listing": "^1.0.0",
         "watchify": "^3.1.0",
-        "gulp-watchify": "^0.5.0"
+        "gulp-watchify": "^0.5.0",
+        "travis-lint": "^0.0.5"
     },
     "dependencies": {
         "animate.css": "viknash/animate.css.git",
@@ -55,8 +56,8 @@
         }
     },
     "scripts": {
+        "bootstrap": "./scripts/setup.sh",
         "postinstall": "gulp install",
-        "test": "gulp build",
-        "bootstrap": "./scripts/setup.sh"
+        "test": "gulp build"
     }
 }

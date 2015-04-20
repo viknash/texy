@@ -2,10 +2,13 @@ language: node_js
 node_js:
   - '0.12'
 before_install:
+  - npm install -g travis-lint
+  - travis-lint .travis.yml
   - npm install -g gulp-cli
+  - npm install -g grunt-cli
   - pushd scripts
   - chmod 777 setup.sh
   - popd
   - npm run-script bootstrap
 before_script:
-  - npm install -g grunt-cli
+

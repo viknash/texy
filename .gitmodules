@@ -10,3 +10,6 @@
 [submodule "modules/animate.css"]
 	path = modules/animate.css
 	url = https://github.com/viknash/animate.css.git
+[submodule "modules/MathJax"]
+	path = modules/MathJax
+	url = https://github.com/viknash/MathJax.git
