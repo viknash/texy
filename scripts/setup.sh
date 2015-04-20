@@ -1,3 +1,4 @@
+#!/bin/bash
 #npm install --save-dev gulp
 #npm install gulp-git --save
 mkdir custom_node_modules
