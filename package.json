@@ -57,6 +57,6 @@
     "scripts": {
         "postinstall": "gulp install",
         "test": "gulp build",
-        "bootstrap": "./scripts/setup.h"
+        "bootstrap": "./scripts/setup.sh"
     }
 }
