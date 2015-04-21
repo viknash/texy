@@ -35,7 +35,8 @@
         "gulp-task-listing": "^1.0.0",
         "watchify": "^3.1.0",
         "gulp-watchify": "^0.5.0",
-        "travis-lint": "^0.0.5"
+        "travis-lint": "^0.0.5",
+        "gulp-watch": "^4.2.4"
     },
     "dependencies": {
         "animate.css": "viknash/animate.css.git",
@@ -53,7 +54,54 @@
                 ],
                 "dest": "build/www/js/"
             }
-        }
+        },
+        "copy": [
+            {
+                "src": "modules/jquery/dist/*",
+                "dest": "build/www/js/lib"
+            },
+            {
+                "src": "modules/grande.js/dist/*",
+                "dest": "build/www/js/lib"
+            },
+            {
+                "src": "modules/grande.js/css/*",
+                "dest": "build/www/css/lib"
+            },
+            {
+                "src": "modules/animate.css/animate.min.css",
+                "dest": "build/www/css/lib"
+            },
+            {
+                "src": "modules/animate.css/animate.min.css",
+                "dest": "build/www/css/lib"
+            },
+            {
+                "src": "modules/MathJax/MathJax.js",
+                "dest": "build/www/js/lib"
+            },
+            {
+                "src": "modules/MathJax/MathJax/config",
+                "dest": "build/www/js/lib/config"
+            },
+            {
+                "src": "modules/MathJax/MathJax/jax",
+                "dest": "build/www/js/lib/jax"
+            },
+            {
+                "src": "modules/topcoat/css/*",
+                "dest": "build/www/css/lib"
+            },
+            {
+                "src": "modules/topcoat/font/*",
+                "dest": "build/www/css/font"
+            },
+            {
+                "src": "modules/topcoat/img/*",
+                "dest": "build/www/css/img"
+            }
+
+        ]
     },
     "scripts": {
         "bootstrap": "./scripts/setup.sh",

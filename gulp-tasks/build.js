@@ -97,7 +97,29 @@ gulp.task('browserify', plugins.watchify(function (watchify) {
     }
 }))
 
+
+// Copy files
+gulp.task('copy', function () {
+    if (argv.continuous != undefined) {
+        for (var i = 0; i < config.custom_settings.copy.length; i++) {
+            gulp.src(config.custom_settings.copy[i].src)
+                .pipe(plugins.watch(
+                    config.custom_settings.copy[i].src, {
+                        emit: 'all',
+                        verbose: true
+                    }
+                ))
+                .pipe(gulp.dest(config.custom_settings.copy[i].dest));
+        }
+    } else {
+        for (var i = 0; i < config.custom_settings.copy.length; i++) {
+            gulp.src(config.custom_settings.copy[i].src)
+                .pipe(gulp.dest(config.custom_settings.copy[i].dest));
+        }
+    }
+});
+
 /**
  * Pulls all required repositories and configures them.
  */
-gulp.task('build', ['browserify', 'build-grunt', 'build-gulp'], function () {});
+gulp.task('build', ['browserify', 'copy', 'build-grunt', 'build-gulp'], function () {});
