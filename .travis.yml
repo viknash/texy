@@ -6,6 +6,7 @@ before_install:
   - travis-lint .travis.yml
   - npm install -g gulp-cli
   - npm install -g grunt-cli
+  - npm install -g clever-cli
   - pushd scripts
   - chmod 777 setup.sh
   - popd

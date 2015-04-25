@@ -13,3 +13,6 @@
 [submodule "modules/MathJax"]
 	path = modules/MathJax
 	url = https://github.com/viknash/MathJax.git
+[submodule "texy-backend"]
+	path = texy-backend
+	url = https://github.com/viknash/texy-backend.git
