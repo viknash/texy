@@ -16,3 +16,6 @@
 [submodule "texy-backend"]
 	path = texy-backend
 	url = https://github.com/viknash/texy-backend.git
+[submodule "texy-frontend"]
+	path = texy-frontend
+	url = https://github.com/viknash/texy-frontend.git
