@@ -43,7 +43,9 @@
         "topcoat": "viknash/topcoat.git",
         "grande.js": "viknash/grande.js.git",
         "jquery": "viknash/jquery.git",
-        "MathJax": "viknash/MathJax.git"
+        "MathJax": "viknash/MathJax.git",
+        "texy-backend": "viknash/texy-backend.git",
+        "texy-frontend": "viknash/texy-frontend.git"
     },
     "custom_settings": {
         "browserify": {

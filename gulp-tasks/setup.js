@@ -30,10 +30,13 @@ gulp.task('setup-findRepos', ['setup-initModuleFolder'], function () {
             var findRepoNameResults = findRepoName.exec(modules[module]);
             var repoName = findRepoNameResults[1];
             var localDirectory = moduleDirectory + '/' + repoName;
+            if (repoName.indexOf("texy") != -1) {
+                localDirectory = repoName;
+            }
             var cloned = true;
             try {
-                console.log('git submodule status modules/' + repoName);
-                child_process.execSync('git submodule status modules/' + repoName);
+                console.log('git submodule status ' + localDirectory);
+                child_process.execSync('git submodule status ' + localDirectory);
             } catch (err) {
                 cloned = false;
             }
