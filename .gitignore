@@ -169,6 +169,7 @@ pip-log.txt
 
 docs
 # modules
+build
 node_modules
 custom_node_modules
 .tmp/
