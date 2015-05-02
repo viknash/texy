@@ -9,6 +9,7 @@ var gitRepositories = require("./findrepos.js")();
 var rootDir = process.cwd();
 
 if (process.argv[2] != "install") {
+    process.env.GRAB_TASK = "true";
     /**
      * Pre-load grunt tasks into gulp
      */
@@ -31,6 +32,7 @@ if (process.argv[2] != "install") {
 
     /* Hack Reset to Root Dir. Directory changes after execution of grunt plugin */
     process.chdir(rootDir);
+    process.env.GRAB_TASK = "";
 }
 
 /**
@@ -47,7 +49,7 @@ gulp.task('build-grunt', function () {
     }
     var tasks = Object.keys(gulp.tasks);
     for (var i = 0; i < gitRepositories.length; i++) {
-        if (gitRepositories[i].grunt) {
+        if (gitRepositories[i].grunt /*&& gitRepositories[i].name !== "texy-backend"*/ ) {
             var moduleTaskName = "grunt-" + gitRepositories[i].name + "-" + taskName;
             if (tasks.indexOf(moduleTaskName) != -1) {
                 console.log("Run Grunt Task: " + moduleTaskName);

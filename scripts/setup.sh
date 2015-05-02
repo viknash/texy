@@ -21,3 +21,4 @@ npm link custom_node_modules/gulp-git
 npm install npm -g
 npm install gulp -g
 npm install clever-cli -g
+npm install node-theseus -g
