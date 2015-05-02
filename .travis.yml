@@ -11,5 +11,6 @@ before_install:
   - chmod 777 setup.sh
   - popd
   - npm run-script bootstrap
+env:
+  - NODE_ENV=test; NODE_PATH=./lib/:./modules/
 before_script:
-
