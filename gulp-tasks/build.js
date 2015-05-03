@@ -40,8 +40,10 @@ if (process.argv[2] != "install") {
  */
 gulp.task('build-grunt', function () {
     var taskName = 'default';
+    var taskNameAlternative = 'build';
     if (argv.continuous != undefined) {
-        taskName = 'watch';
+        taskName = 'serve';
+        taskNameAlternative = 'watch';
     }
     if (fs.existsSync('./Gruntfile.js')) {
         console.log("Run Grunt Task: " + taskName);
@@ -56,6 +58,14 @@ gulp.task('build-grunt', function () {
                 process.chdir(gitRepositories[i].localDirectory);
                 gulp.run(moduleTaskName);
                 process.chdir(rootDir);
+            } else {
+                moduleTaskName = "grunt-" + gitRepositories[i].name + "-" + taskNameAlternative;
+                if (tasks.indexOf(moduleTaskName) != -1) {
+                    console.log("Run Grunt Task: " + moduleTaskName);
+                    process.chdir(gitRepositories[i].localDirectory);
+                    gulp.run(moduleTaskName);
+                    process.chdir(rootDir);
+                }
             }
         }
     }
