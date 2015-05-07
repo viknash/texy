@@ -15,17 +15,25 @@ module.exports = function () {
             if (repoName.indexOf("texy") != -1) {
                 localDirectory = repoName;
             }
-            var cloned = false
+            var cloned = false;
             if (fs.existsSync(localDirectory)) {
                 cloned = true;
             }
-            var gulp = false
+            var gulp = false;
             if (fs.existsSync(localDirectory + '/gulpfile.js')) {
                 gulp = true;
             }
-            var grunt = false
+            var grunt = false;
             if (fs.existsSync(localDirectory + '/Gruntfile.js')) {
                 grunt = true;
+            }
+            var bower = false;
+            if (fs.existsSync(localDirectory + '/bower.json')) {
+                bower = true;
+            }
+            var npm = false;
+            if (fs.existsSync(localDirectory + '/package.json')) {
+                npm = true;
             }
             repos.push({
                 name: repoName,
@@ -34,7 +42,9 @@ module.exports = function () {
                 forkedUrl: 'https://github.com/' + modules[module],
                 remoteUrl: '',
                 gulp: gulp,
-                grunt: grunt
+                grunt: grunt,
+                bower: bower,
+                npm: npm
             });
         }
     }

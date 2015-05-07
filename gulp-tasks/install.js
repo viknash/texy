@@ -12,8 +12,16 @@ gulp.task('install', ['setup'], function () {
     //gulp.src(['./package.json'])
     // .pipe(plugins.install());
     for (var i = 0; i < gitRepositories.length; i++) {
-        console.log("Installing " + gitRepositories[i].name);
-        gulp.src([gitRepositories[i].localDirectory + '/package.json'])
-            .pipe(plugins.install());
+        if (gitRepositories[i].npm == true) {
+            console.log("Installing (npm)" + gitRepositories[i].name);
+            gulp.src([gitRepositories[i].localDirectory + '/package.json'])
+                .pipe(plugins.install());
+        }
+        if (gitRepositories[i].bower == true) {
+            console.log("Installing (Bower) " + gitRepositories[i].name);
+            plugins.bower({
+                cwd: gitRepositories[i].localDirectory
+            })
+        }
     }
 });

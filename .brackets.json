@@ -1,0 +1,36 @@
+{
+    "jslint.options": {
+        "vars": true,
+        "plusplus": true,
+        "devel": true,
+        "nomen": true,
+        "maxerr": 50,
+        "es5": true
+    },
+    "defaultExtension": "js",
+    "language": {
+        "javascript": {
+            "linting.prefer": [
+                "JSHint",
+                "JSLint"
+            ],
+            "linting.usePreferredOnly": true
+        }
+    },
+    "path": {
+        "texy-frontend/**/*.js": {
+            "spaceUnits": 2,
+            "linting.enabled": true,
+            "brackets-git.gitPath": "git",
+            "linting.collapsed": true,
+            "crabcode.outline.enabled": false,
+            "brackets-git.terminalCommand": "C:\\Program Files (x86)\\Git\\Git Bash.vbs"
+        },
+        "texy-backend/**/*.js": {
+            "spaceUnits": 2,
+            "linting.enabled": true
+        }
+    },
+    "spaceUnits": 4,
+    "useTabChar": false
+}
