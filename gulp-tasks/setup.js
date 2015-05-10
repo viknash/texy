@@ -25,12 +25,12 @@ gulp.task('setup-findRepos', ['setup-initModuleFolder'], function () {
     //Parse packages.json and pull git repos
     var modules = config.dependencies;
     for (var module in modules) {
-        if (modules[module].indexOf(".git") != -1) {
+        if (modules[module].indexOf(".git") !== -1) {
             var findRepoName = new RegExp("^[^\/]*\/([^\/]*).git$");
             var findRepoNameResults = findRepoName.exec(modules[module]);
             var repoName = findRepoNameResults[1];
             var localDirectory = moduleDirectory + '/' + repoName;
-            if (repoName.indexOf("texy") != -1) {
+            if (repoName.indexOf("texy") !== -1) {
                 localDirectory = repoName;
             }
             var cloned = true;
@@ -57,7 +57,7 @@ gulp.task('setup-findRepos', ['setup-initModuleFolder'], function () {
 
 
 gulp.task('setup-cloneRepos', ['setup-findRepos'], function () {
-    for (var i = 0; i < gitRepositories.length; i++) {
+    for (var i = 0; i < gitRepositories.length; i += 1) {
         if (!gitRepositories[i].cloned) {
             /*git.clone(
                 gitRepositories[i].forkedUrl, 
@@ -83,17 +83,17 @@ gulp.task('setup-cloneRepos', ['setup-findRepos'], function () {
             );
         }
     }
-    for (var i = 0; i < gitRepositories.length; i++) {
-        var repoDependenciesFile = gitRepositories[i].localDirectory + '/package.json';
-        while (!fs.existsSync(repoDependenciesFile)) {}
+    for (var j = 0; i < gitRepositories.length; j += 1) {
+        var repoDependenciesFile = gitRepositories[j].localDirectory + '/package.json';
+        while (!fs.existsSync(repoDependenciesFile)) { /**/ }
     }
 });
 
 gulp.task('setup-linkUpstream', ['setup-cloneRepos'], function () {
-    for (var i = 0; i < gitRepositories.length; i++) {
+    for (var i = 0; i < gitRepositories.length; i += 1) {
         if (!gitRepositories[i].cloned) {
             var repoDependenciesFile = gitRepositories[i].localDirectory + '/package.json';
-            while (!fs.existsSync(repoDependenciesFile)) {};
+            while (!fs.existsSync(repoDependenciesFile)) {}
             var repoDependencies = require(repoDependenciesFile);
             gitRepositories[i].remoteUrl = repoDependencies.repository.url;
             git.addRemote(
@@ -104,7 +104,7 @@ gulp.task('setup-linkUpstream', ['setup-cloneRepos'], function () {
                 function (err) {
                     if (err) throw err;
                 }
-            )
+            );
             gitRepositories[i].cloned = true;
         }
     }

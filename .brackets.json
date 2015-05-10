@@ -32,5 +32,7 @@
         }
     },
     "spaceUnits": 4,
-    "useTabChar": false
+    "useTabChar": false,
+    "interactive-linter.javascript": ["jshint"],
+    "interactive-linter.delay": 1000
 }

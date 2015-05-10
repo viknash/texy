@@ -39,7 +39,12 @@
         "gulp-watch": "^4.2.4",
         "gulp-bower": "^0.0.10",
         "aws-sdk": "^2.1.26",
-        "gulp-awspublish": "^2.0.0"
+        "gulp-awspublish": "^2.0.0",
+        "csvtojson": "^0.3.21",
+        "gulp-zip": "^3.0.2",
+        "gulp-download": "^0.0.1",
+        "gulp-unzip": "^0.1.3",
+        "del": "^1.1.1"
     },
     "dependencies": {
         "animate.css": "viknash/animate.css.git",
@@ -106,7 +111,13 @@
                 "dest": "texy-frontend/app/styles/img"
             }
 
-        ]
+        ],
+        "brackets_extensions": {
+            "bucket_url": "https://s3-ap-southeast-1.amazonaws.com/texy-dev/"
+        },
+        "directories": {
+            "tmp": "./tmp/"
+        }
     },
     "scripts": {
         "bootstrap": "./scripts/setup.sh",

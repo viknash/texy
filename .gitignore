@@ -177,5 +177,8 @@ bower_components/
 bundle*.js
 bundle*.map
 *.css.map
+credentials.csv
+tmp/
+.awspublish*
 
 
