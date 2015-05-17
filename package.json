@@ -1,127 +1,131 @@
 {
-    "name": "texy",
-    "version": "0.0.1",
-    "description": "Texy...",
-    "main": "docs/index.html",
-    "directories": {},
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/viknash/texy.git"
-    },
-    "keywords": [
+  "name": "texy",
+  "version": "0.0.1",
+  "description": "Texy...",
+  "main": "docs/index.html",
+  "directories": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/viknash/texy.git"
+  },
+  "keywords": [
         "texy",
         "word",
         "processor"
     ],
-    "author": "Viknash",
-    "license": "MIT",
-    "readmeFilename": "README.md",
-    "devDependencies": {
-        "browserify": "^4.2.3",
-        "gulp": "^3.8.11",
-        "gulp-git": "^0.4.0",
-        "jsdoc": "<=3.3.0",
-        "gulp-jsdoc": "0.1.4",
-        "yargs": "^3.7.0",
-        "browserify": "^9.0.7",
-        "require-dir": "^0.3.0",
-        "gulp-grunt": "^0.5.2",
-        "gulp-load-plugins": "^0.10.0",
-        "npm-clean": "^1.0.3",
-        "gulp-install": "^0.4.0",
-        "gulp-exec": "^2.1.1",
-        "grunt": "~0.4.1",
-        "gulp-gulp": "^0.0.3",
-        "gulp-task-listing": "^1.0.0",
-        "watchify": "^3.1.0",
-        "gulp-watchify": "^0.5.0",
-        "travis-lint": "^0.0.5",
-        "gulp-watch": "^4.2.4",
-        "gulp-bower": "^0.0.10",
-        "aws-sdk": "^2.1.26",
-        "gulp-awspublish": "^2.0.0",
-        "csvtojson": "^0.3.21",
-        "gulp-zip": "^3.0.2",
-        "gulp-download": "^0.0.1",
-        "gulp-unzip": "^0.1.3",
-        "del": "^1.1.1"
-    },
-    "dependencies": {
-        "animate.css": "viknash/animate.css.git",
-        "topcoat": "viknash/topcoat.git",
-        "grande.js": "viknash/grande.js.git",
-        "jquery": "viknash/jquery.git",
-        "MathJax": "viknash/MathJax.git",
-        "texy-backend": "viknash/texy-backend.git",
-        "texy-frontend": "viknash/texy-frontend.git"
-    },
-    "custom_settings": {
-        "browserify": {
-            "bundlePaths": {
-                "src": [
+  "author": "Viknash",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "browserify": "^4.2.3",
+    "gulp": "^3.8.11",
+    "gulp-git": "^0.4.0",
+    "jsdoc": "<=3.3.0",
+    "gulp-jsdoc": "0.1.4",
+    "yargs": "^3.7.0",
+    "browserify": "^9.0.7",
+    "require-dir": "^0.3.0",
+    "gulp-grunt": "^0.5.2",
+    "gulp-load-plugins": "^0.10.0",
+    "npm-clean": "^1.0.3",
+    "gulp-install": "^0.4.0",
+    "gulp-exec": "^2.1.1",
+    "grunt": "~0.4.1",
+    "gulp-gulp": "^0.0.3",
+    "gulp-task-listing": "^1.0.0",
+    "watchify": "^3.1.0",
+    "gulp-watchify": "^0.5.0",
+    "travis-lint": "^0.0.5",
+    "gulp-watch": "^4.2.4",
+    "gulp-bower": "^0.0.10",
+    "aws-sdk": "^2.1.26",
+    "gulp-awspublish": "^2.0.0",
+    "csvtojson": "^0.3.21",
+    "gulp-zip": "^3.0.2",
+    "gulp-download": "^0.0.1",
+    "gulp-unzip": "^0.1.3",
+    "del": "^1.1.1"
+  },
+  "dependencies": {
+    "animate.css": "viknash/animate.css.git",
+    "topcoat": "viknash/topcoat.git",
+    "grande.js": "viknash/grande.js.git",
+    "jquery": "viknash/jquery.git",
+    "MathJax": "viknash/MathJax.git",
+    "texy-backend": "viknash/texy-backend.git",
+    "texy-frontend": "viknash/texy-frontend.git",
+    "animo.js": "viknash/animo.js.git"
+  },
+  "custom_settings": {
+    "browserify": {
+      "bundlePaths": {
+        "src": [
                     "client/js/**/*.js",
                     "!client/js/**/lib/**"
                 ],
-                "dest": "build/www/js/"
-            }
-        },
-        "copy": [
-            {
-                "src": "modules/jquery/dist/*",
-                "dest": "texy-frontend/app/scripts/lib"
-            },
-            {
-                "src": "modules/grande.js/dist/*",
-                "dest": "texy-frontend/app/scripts/lib"
-            },
-            {
-                "src": "modules/grande.js/css/*",
-                "dest": "texy-frontend/app/styles/lib"
-            },
-            {
-                "src": "modules/animate.css/animate.min.css",
-                "dest": "texy-frontend/app/styles/lib"
-            },
-            {
-                "src": "modules/animate.css/animate.min.css",
-                "dest": "texy-frontend/app/styles/lib"
-            },
-            {
-                "src": "modules/MathJax/MathJax.js",
-                "dest": "texy-frontend/app/scripts/lib"
-            },
-            {
-                "src": "modules/MathJax/MathJax/config",
-                "dest": "texy-frontend/app/scripts/lib/config"
-            },
-            {
-                "src": "modules/MathJax/MathJax/jax",
-                "dest": "texy-frontend/app/scripts/lib/jax"
-            },
-            {
-                "src": "modules/topcoat/css/*",
-                "dest": "texy-frontend/app/styles/lib"
-            },
-            {
-                "src": "modules/topcoat/font/*",
-                "dest": "texy-frontend/app/styles/font"
-            },
-            {
-                "src": "modules/topcoat/img/*",
-                "dest": "texy-frontend/app/styles/img"
-            }
-
-        ],
-        "brackets_extensions": {
-            "bucket_url": "https://s3-ap-southeast-1.amazonaws.com/texy-dev/"
-        },
-        "directories": {
-            "tmp": "./tmp/"
-        }
+        "dest": "build/www/js/"
+      }
     },
-    "scripts": {
-        "bootstrap": "./scripts/setup.sh",
-        "postinstall": "gulp install",
-        "test": "gulp build"
+    "copy": [
+      {
+        "src": "modules/jquery/dist/*",
+        "dest": "texy-frontend/app/scripts/lib"
+            },
+      {
+        "src": "modules/grande.js/dist/*",
+        "dest": "texy-frontend/app/scripts/lib"
+            },
+      {
+        "src": "modules/grande.js/css/**/*",
+        "dest": "texy-frontend/app/styles/lib"
+            },
+      {
+        "src": "modules/animate.css/animate.min.*",
+        "dest": "texy-frontend/app/styles/lib"
+            },
+      {
+        "src": "modules/MathJax/MathJax.js",
+        "dest": "texy-frontend/app/scripts/lib"
+            },
+      {
+        "src": "modules/MathJax/MathJax/config",
+        "dest": "texy-frontend/app/scripts/lib/config"
+            },
+      {
+        "src": "modules/MathJax/MathJax/jax",
+        "dest": "texy-frontend/app/scripts/lib/jax"
+            },
+      {
+        "src": "modules/topcoat/css/*",
+        "dest": "texy-frontend/app/styles/lib"
+            },
+      {
+        "src": "modules/topcoat/font/*",
+        "dest": "texy-frontend/app/styles/font"
+            },
+      {
+        "src": "modules/topcoat/img/*",
+        "dest": "texy-frontend/app/styles/img"
+            },
+      {
+        "src": "modules/animo.js/animate-animo.min.*",
+        "dest": "texy-frontend/app/styles/lib"
+            },
+      {
+        "src": "modules/animo.js/animo.min.*",
+        "dest": "texy-frontend/app/scripts/lib"
+            }
+        ],
+    "brackets_extensions": {
+      "bucket_url": "https://s3-ap-southeast-1.amazonaws.com/texy-dev/"
+    },
+    "directories": {
+      "tmp": "./tmp/"
     }
+  },
+  "scripts": {
+    "bootstrap": "./scripts/setup.sh",
+    "postinstall": "gulp install",
+    "test": "gulp build"
+  }
 }

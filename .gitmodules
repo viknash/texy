@@ -19,3 +19,6 @@
 [submodule "texy-frontend"]
 	path = texy-frontend
 	url = https://github.com/viknash/texy-frontend.git
+[submodule "modules/animo.js"]
+	path = modules/animo.js
+	url = https://github.com/viknash/animo.js.git

@@ -1,8 +1,9 @@
 # Texy
 > Hatching an egg
 
-[![Chat](https://badges.gitter.im/gitterHQ/gitter.svg)](https://gitter.im/viknash/texy)
-[Trello](https://trello.com/b/ChYrpKrX/texy)
+[![Chat](https://badges.gitter.im/gitterHQ/gitter.svg)](https://gitter.im/viknash/texy) |
+[Trello](https://trello.com/b/ChYrpKrX/texy) |
+[Taiga SCRUM](https://tree.taiga.io/project/viknash-texy/)
 
 ## Project Status
 |  Project 	|  Build  	|   Coverage	| Github | Code Climate |   	|   	|   	|

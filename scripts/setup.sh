@@ -37,5 +37,6 @@ fi
 popd
 npm install npm -g
 npm install gulp -g
+npm install grunt -g
 npm install clever-cli -g
 npm install node-theseus -g
