@@ -66,54 +66,45 @@
         "dest": "build/www/js/"
       }
     },
-    "copy": [
-      {
+    "copy": [{
         "src": "modules/jquery/dist/*",
         "dest": "texy-frontend/app/scripts/lib"
-            },
-      {
+            }, {
         "src": "modules/grande.js/dist/*",
         "dest": "texy-frontend/app/scripts/lib"
-            },
-      {
+            }, {
         "src": "modules/grande.js/css/**/*",
         "dest": "texy-frontend/app/styles/lib"
-            },
-      {
+            }, {
         "src": "modules/animate.css/animate.min.*",
         "dest": "texy-frontend/app/styles/lib"
-            },
-      {
+            }, {
         "src": "modules/MathJax/MathJax.js",
         "dest": "texy-frontend/app/scripts/lib"
-            },
-      {
+            }, {
         "src": "modules/MathJax/MathJax/config",
         "dest": "texy-frontend/app/scripts/lib/config"
-            },
-      {
+            }, {
         "src": "modules/MathJax/MathJax/jax",
         "dest": "texy-frontend/app/scripts/lib/jax"
-            },
-      {
+            }, {
         "src": "modules/topcoat/css/*",
         "dest": "texy-frontend/app/styles/lib"
-            },
-      {
+            }, {
         "src": "modules/topcoat/font/*",
         "dest": "texy-frontend/app/styles/font"
-            },
-      {
+            }, {
         "src": "modules/topcoat/img/*",
         "dest": "texy-frontend/app/styles/img"
-            },
-      {
+            }, {
         "src": "modules/animo.js/animate-animo.min.*",
         "dest": "texy-frontend/app/styles/lib"
-            },
-      {
+            }, {
         "src": "modules/animo.js/animo.min.*",
         "dest": "texy-frontend/app/scripts/lib"
+            }, {
+        "src": "modules/animate.css/animations.json",
+        "dest": "texy-frontend/app/config/"
             }
         ],
     "brackets_extensions": {
